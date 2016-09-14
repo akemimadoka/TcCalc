@@ -39,7 +39,7 @@ namespace Tccalc
             {
                 imageList1.Images.Add(Tascalc.GetAspectNameFromId(Tascalc.FindAspectFromStr(ParseFilename(asimagelist.Keys[i]))), asimagelist[i]);
             }
-            Text = $"共有 {result.Count} 组结果，步数为 {step}";
+            Text = string.Format(Resources.resultwindowtitle, result.Count, step);
             
             foreach(List<string> x in result)
             {
@@ -63,13 +63,9 @@ namespace Tccalc
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             listView1.Clear();
-            if (listBox1.SelectedItems.Count > 0)
-            {
-                foreach (string x in _asresult[listBox1.SelectedIndex])
-                {
-                    listView1.Items.Add(x, x);
-                }
-            }
+            if (listBox1.SelectedItems.Count <= 0)
+                return;
+            listView1.Items.AddRange((from item in _asresult[listBox1.SelectedIndex] select new ListViewItem(item, item)).ToArray());
         }
 
         private void Form2_Resize(object sender, EventArgs e)
@@ -109,7 +105,7 @@ namespace Tccalc
 
                         _astip.UpdateAstip(tmpImage, tmpAsname);
                         if (ActiveForm != null)
-                            _astip.Location = new Point(e.X + ActiveForm.Left + 30, e.Y + ActiveForm.Top + 100);
+                            _astip.Location = new Point(e.X + listView1.Left + ActiveForm.Left + 10, e.Y + listView1.Top + ActiveForm.Top - 70);
 
                         _astip.Visible = true;
                         Focus();

@@ -184,4 +184,10 @@
 	<data name="noresult" xml:space="preserve">
     <value>至少应当存在一个结果</value>
   </data>
+	<data name="resultwindowtitle" xml:space="preserve">
+    <value>共有 {0} 组结果，步数为 {1}</value>
+  </data>
+	<data name="stepshouldbenumber" xml:space="preserve">
+    <value>步数不是数字哦</value>
+  </data>
 </root>

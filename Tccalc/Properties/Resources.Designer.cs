@@ -170,6 +170,15 @@ namespace Tccalc.Properties {
         }
         
         /// <summary>
+        ///   查找类似 共有 {0} 组结果，步数为 {1} 的本地化字符串。
+        /// </summary>
+        internal static string resultwindowtitle {
+            get {
+                return ResourceManager.GetString("resultwindowtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 已选择： 的本地化字符串。
         /// </summary>
         internal static string selectedas {
@@ -211,6 +220,15 @@ namespace Tccalc.Properties {
         internal static string steprequested {
             get {
                 return ResourceManager.GetString("steprequested", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 步数不是数字哦 的本地化字符串。
+        /// </summary>
+        internal static string stepshouldbenumber {
+            get {
+                return ResourceManager.GetString("stepshouldbenumber", resourceCulture);
             }
         }
         

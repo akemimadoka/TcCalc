@@ -96,25 +96,28 @@ namespace Tccalc
             GetAllFileByDir(@"pictures\color\", filelist);
             foreach (string filename in filelist)
             {
-                if (_ascalc.FindAspectFromStr(ParseFilename(filename)) > -1)
+                var parsedFilename = ParseFilename(filename);
+                if (_ascalc.FindAspectFromStr(parsedFilename) > -1)
                 {
-                    imageList1.Images.Add(ParseFilename(filename), Image.FromFile(filename));
-                    listView1.Items.Add(new ListViewItem(_ascalc.ParseAspectName(ParseFilename(filename)), ParseFilename(filename)));
+                    imageList1.Images.Add(parsedFilename, Image.FromFile(filename));
+                    listView1.Items.Add(new ListViewItem(_ascalc.ParseAspectName(parsedFilename), parsedFilename));
                 }
                 else
                 {
-                    listView1.Items.Add(_ascalc.ParseAspectName(ParseFilename(filename)), null);
+                    listView1.Items.Add(_ascalc.ParseAspectName(parsedFilename), null);
                 }
             }
-
+            
             if (_basicfirst)
             {
                 List<ListViewItem> basicaspect = new List<ListViewItem>();
 
-                foreach (ListViewItem item in from ListViewItem item in listView1.Items let asindex = _ascalc.FindAspectFromStr(item.Text) where _ascalc.IsBasicAspect(asindex) select item)
+                foreach (ListViewItem item in from ListViewItem item in listView1.Items
+                                              let asindex = _ascalc.FindAspectFromStr(item.Text)
+                                              where _ascalc.IsBasicAspect(asindex)
+                                              select item)
                 {
                     basicaspect.Add(item);
-                    //ListViewItem tmpitem = (ListViewItem)item.Clone();
                     listView1.Items.Remove(item);
                 }
                 if (basicaspect.Count > 0)
@@ -124,20 +127,14 @@ namespace Tccalc
                         listView1.Items.Insert(index, basicaspect[index]);
                     }
                 }
-                // <Bug Fix>
-                List<ListViewItem> bugfix = (from ListViewItem item in listView1.Items select (ListViewItem) item.Clone()).ToList();
+                // Bug Fix
+                var items = (from ListViewItem item in listView1.Items select (ListViewItem) item.Clone()).ToArray();
                 listView1.Clear();
-                foreach (ListViewItem item in bugfix)
-                {
-                    listView1.Items.Add(item);
-                }
+                listView1.Items.AddRange(items);
             }
-
-            foreach (ListViewItem item in listView1.Items)
-            {
-                listView2.Items.Add((ListViewItem)item.Clone());
-                listView3.Items.Add((ListViewItem)item.Clone());
-            }
+            
+            listView2.Items.AddRange((from ListViewItem item in listView1.Items select (ListViewItem)item.Clone()).ToArray());
+            listView3.Items.AddRange((from ListViewItem item in listView1.Items select (ListViewItem)item.Clone()).ToArray());
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -151,10 +148,8 @@ namespace Tccalc
                 {
                     except.AddRange(from ListViewItem x in listView3.SelectedItems select _ascalc.FindAspectFromStr(x.Text));
                 }
-
-                // 异常处理部分
-                // ↑哈？
-                if (textBox1.Text.Equals(""))
+                
+                if (textBox1.Text == "")
                 {
                     MessageBox.Show(Resources.steprequested, Resources.prompt, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
@@ -171,24 +166,27 @@ namespace Tccalc
                     return;
                 }
 
-                int.TryParse(textBox1.Text, out step);
+                if (!int.TryParse(textBox1.Text, out step))
+                {
+                    MessageBox.Show(Resources.stepshouldbenumber, Resources.prompt, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
                 if (step < 0)
                 {
                     MessageBox.Show(Resources.stepshouldbepositivenum, Resources.prompt, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                else if (step > 9)
+                if (step > 9)
                 {
                     if (MessageBox.Show(Resources.steptoobig, Resources.prompt, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     {
                         return;
                     }
                 }
-                List<List<string>> result = _ascalc.Calc(_ascalc.FindAspectFromStr(listView1.SelectedItems[0].Text), _ascalc.FindAspectFromStr(listView2.SelectedItems[0].Text), step, except);
+                var result = _ascalc.Calc(_ascalc.FindAspectFromStr(listView1.SelectedItems[0].Text), _ascalc.FindAspectFromStr(listView2.SelectedItems[0].Text), step, except);
 
                 if (result.Count > 0)
                 {
-                    Form2 f2 = new Form2(new List<List<string>>(result), step, imageList1.Images);
+                    Form2 f2 = new Form2(result, step, imageList1.Images);
                     f2.Show();
                 }
                 else
@@ -211,26 +209,12 @@ namespace Tccalc
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count > 0)
-            {
-                label2.Text = Resources.selectedup + listView1.SelectedItems[0].Text;
-            }
-            else
-            {
-                label2.Text = Resources.selectedup + Resources.nullas;
-            }
+            label2.Text = Resources.selectedup + (listView1.SelectedItems.Count > 0 ? listView1.SelectedItems[0].Text : Resources.nullas);
         }
 
         private void listView2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listView2.SelectedItems.Count > 0)
-            {
-                label3.Text = Resources.selecteddown + listView2.SelectedItems[0].Text;
-            }
-            else
-            {
-                label3.Text = Resources.selecteddown + Resources.nullas;
-            }
+            label3.Text = Resources.selecteddown + (listView2.SelectedItems.Count > 0 ? listView2.SelectedItems[0].Text : Resources.nullas);
         }
 
         private bool _isFold = true;
@@ -307,7 +291,7 @@ namespace Tccalc
 
                         _astip.UpdateAstip(tmpImage, tmpAsname);
                         if (ActiveForm != null)
-                            _astip.Location = new Point(e.X + ActiveForm.Left + 30, e.Y + ActiveForm.Top + 100);
+                            _astip.Location = new Point(e.X + listView1.Left + ActiveForm.Left + 10, e.Y + listView1.Top + ActiveForm.Top - 70);
 
                         _astip.Visible = true;
                         Focus();
@@ -328,7 +312,7 @@ namespace Tccalc
 
         private void label6_Click(object sender, EventArgs e)
         {
-            int tmpstep = 3;
+            int tmpstep;
             int.TryParse(textBox1.Text, out tmpstep);
             if (tmpstep - 1 > 0)
             {
@@ -338,27 +322,25 @@ namespace Tccalc
 
         private void label7_Click(object sender, EventArgs e)
         {
-            int tmpstep = 3;
+            int tmpstep;
             int.TryParse(textBox1.Text, out tmpstep);
             textBox1.Text = (tmpstep + 1).ToString(CultureInfo.InvariantCulture);
         }
 
         private void listView1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            foreach (ListViewItem item in from ListViewItem item in listView1.Items where !_basicfirst || !_ascalc.IsBasicAspect(item.Text) where item.Text[0] == e.KeyChar select item)
-            {
-                listView1.FocusedItem = item;
-                break;
-            }
+            listView1.FocusedItem = (from ListViewItem item in listView1.Items
+                                     where !_basicfirst || !_ascalc.IsBasicAspect(item.Text)
+                                     where item.Text[0] == e.KeyChar
+                                     select item).FirstOrDefault() ?? listView1.FocusedItem;
         }
 
         private void listView2_KeyPress(object sender, KeyPressEventArgs e)
         {
-            foreach (ListViewItem item in from ListViewItem item in listView2.Items where !_basicfirst || !_ascalc.IsBasicAspect(item.Text) where item.Text[0] == e.KeyChar select item)
-            {
-                listView2.FocusedItem = item;
-                break;
-            }
+            listView2.FocusedItem = (from ListViewItem item in listView2.Items
+                                     where !_basicfirst || !_ascalc.IsBasicAspect(item.Text)
+                                     where item.Text[0] == e.KeyChar
+                                     select item).FirstOrDefault() ?? listView2.FocusedItem;
         }
 
         // 是的我基本只是复制了一遍上面的代码【
@@ -379,7 +361,7 @@ namespace Tccalc
 
                         _astip.UpdateAstip(tmpImage, tmpAsname);
                         if (ActiveForm != null)
-                            _astip.Location = new Point(e.X + ActiveForm.Left + 30, e.Y + ActiveForm.Top + 100);
+                            _astip.Location = new Point(e.X + listView2.Left + ActiveForm.Left + 10, e.Y + listView2.Top + ActiveForm.Top - 70);
 
                         _astip.Visible = true;
                         Focus();

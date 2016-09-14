@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using System.IO;
-using System.Net;
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Windows.Forms;
 using Tccalc.Properties;
 
 namespace Tccalc
@@ -51,7 +51,7 @@ namespace Tccalc
                 if (!Aspects[FindAspectFromStr(x[1])].Contains(x[0]) ||
                     !Aspects[FindAspectFromStr(x[2])].Contains(x[0]))
                 {
-                    MessageBox.Show("数据校验错误 " + x[0]);
+                    MessageBox.Show("数据校验错误 " + x.First());
                     return false;
                 }
             }
@@ -77,9 +77,9 @@ namespace Tccalc
                         }
                         break;
                     case 1:
-                        if (!BasicAspects.Contains(Aspects[asindex][0]))
+                        if (!BasicAspects.Contains(Aspects[asindex].First()))
                         {
-                            BasicAspects.Add(Aspects[asindex][0]);
+                            BasicAspects.Add(Aspects[asindex].First());
                         }
                         continue;
                     default:
@@ -103,28 +103,28 @@ namespace Tccalc
                 tmpAsp = objReader.ReadLine();
                 if (tmpAsp == null || tmpAsp.Equals(""))
                     continue;
-                if (tmpAsp[0] == '#' || tmpAsp[0] == '⑨')
+                switch (tmpAsp.First())
                 {
-                    continue;
-                }
-                if (tmpAsp[0] == '@')
-                {
-                    string command = tmpAsp.Split('@')[1];
-                    command = command.ToLower();
-                    if (command.StartsWith("version"))
-                    {
-                        Version = command.Split('=')[1];
-                    }
-                    else if (command.StartsWith("change"))
-                    {
-                        int tmpChange;
-                        if (int.TryParse(command.Split('=')[1], out tmpChange))
+                    case '#':
+                    case '⑨':
+                        continue;
+                    case '@':
+                        string command = tmpAsp.Substring(tmpAsp.IndexOf('@') + 1);
+                        command = command.ToLower();
+                        if (command.StartsWith("version"))
                         {
-                            Change = tmpChange;
+                            Version = command.Substring(command.IndexOf('=') + 1);
                         }
-                    }
+                        else if (command.StartsWith("change"))
+                        {
+                            int tmpChange;
+                            if (int.TryParse(command.Substring(command.IndexOf('=') + 1), out tmpChange))
+                            {
+                                Change = tmpChange;
+                            }
+                        }
 
-                    continue;
+                        continue;
                 }
                 tmpAspects.AddRange(tmpAsp.Split(' '));
 
@@ -160,22 +160,22 @@ namespace Tccalc
                 tmpAsp = objReader.ReadLine();
                 if (tmpAsp == null || tmpAsp.Equals(""))
                     continue;
-                switch (tmpAsp[0])
+                switch (tmpAsp.First())
                 {
                     case '#':
                     case '⑨':
                         continue;
                     case '@':
-                        string command = tmpAsp.Split('@')[1];
+                        string command = tmpAsp.Substring(tmpAsp.IndexOf('@') + 1);
                         command = command.ToLower();
                         if (command.StartsWith("version"))
                         {
-                            Version = command.Split('=')[1];
+                            Version = command.Substring(command.IndexOf('=') + 1);
                         }
                         else if (command.StartsWith("change"))
                         {
                             int tmpChange;
-                            if (int.TryParse(command.Split('=')[1], out tmpChange))
+                            if (int.TryParse(command.Substring(command.IndexOf('=') + 1), out tmpChange))
                             {
                                 Change = tmpChange;
                             }
@@ -196,14 +196,14 @@ namespace Tccalc
         //从元素ID获得元素名
         public string GetAspectNameFromId(int id)
         {
-            return Aspects[id][0];
+            return Aspects[id].First();
         }
         //从元素名查找元素ID
         public int FindAspectFromStr(string name)
         {
-            for(int index = 0;index < Aspects.Count;++index)
+            for (int index = 0; index < Aspects.Count; ++index)
             {
-                if(Aspects[index][0].Contains(name) || name.Contains(Aspects[index][0]))
+                if (Aspects[index].First().Contains(name) || name.Contains(Aspects[index].First()))
                 {
                     return index;
                 }
@@ -245,21 +245,21 @@ namespace Tccalc
         //排除元素表
         private List<int> _exceptAspects;
         //判断是否可连接
-        private bool IsLinkAvailable(int @from, int to)
+        private bool IsLinkAvailable(int from, int to)
         {
-            if(_exceptAspects.Contains(@from) || _exceptAspects.Contains(to))
+            if(_exceptAspects.Contains(from) || _exceptAspects.Contains(to))
             {
                 return false;
             }
 
-            if(@from < 0 || to < 0 || @from >= Aspects.Count || to >= Aspects.Count)
+            if(from < 0 || to < 0 || from >= Aspects.Count || to >= Aspects.Count)
             {
                 return false;
             }
 
-            for(int i = 1;i<Aspects[@from].Count;++i)
+            for(int i = 1; i < Aspects[from].Count; ++i)
             {
-                if(Aspects[@from][i].Equals(Aspects[to][0]))
+                if(Aspects[from][i].Equals(Aspects[to].First()))
                 {
                     return true;
                 }
