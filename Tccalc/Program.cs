@@ -88,6 +88,16 @@ namespace Tccalc
                 }
             }
         }
+
+        private static IEnumerable<string> ReadLines(TextReader streamReader)
+        {
+            string line;
+            while ((line = streamReader.ReadLine()) != null)
+            {
+                yield return line;
+            }
+        }
+
         //加载元素描述文件
         public AspectCalc(string aspectfile)
         {
@@ -95,44 +105,41 @@ namespace Tccalc
                 return;
             Aspects.Clear();
             List<string> tmpAspects = new List<string>();
-            string tmpAsp = "";
-            StreamReader objReader = new StreamReader(aspectfile);
-
-            while (tmpAsp != null && !objReader.EndOfStream)
+            using (var objReader = new StreamReader(aspectfile))
             {
-                tmpAsp = objReader.ReadLine();
-                if (tmpAsp == null || tmpAsp.Equals(""))
-                    continue;
-                switch (tmpAsp.First())
+                foreach (var item in ReadLines(objReader))
                 {
-                    case '#':
-                    case '⑨':
+                    if (item.Equals(""))
                         continue;
-                    case '@':
-                        string command = tmpAsp.Substring(tmpAsp.IndexOf('@') + 1);
-                        command = command.ToLower();
-                        if (command.StartsWith("version"))
-                        {
-                            Version = command.Substring(command.IndexOf('=') + 1);
-                        }
-                        else if (command.StartsWith("change"))
-                        {
-                            int tmpChange;
-                            if (int.TryParse(command.Substring(command.IndexOf('=') + 1), out tmpChange))
+                    switch (item.First())
+                    {
+                        case '#':
+                        case '⑨':
+                            continue;
+                        case '@':
+                            string command = item.Substring(item.IndexOf('@') + 1);
+                            command = command.ToLower();
+                            if (command.StartsWith("version"))
                             {
-                                Change = tmpChange;
+                                Version = command.Substring(command.IndexOf('=') + 1);
                             }
-                        }
+                            else if (command.StartsWith("change"))
+                            {
+                                int tmpChange;
+                                if (int.TryParse(command.Substring(command.IndexOf('=') + 1), out tmpChange))
+                                {
+                                    Change = tmpChange;
+                                }
+                            }
 
-                        continue;
+                            continue;
+                    }
+                    tmpAspects.AddRange(item.Split(' '));
+
+                    Aspects.Add(new List<string>(tmpAspects));
+                    tmpAspects.Clear();
                 }
-                tmpAspects.AddRange(tmpAsp.Split(' '));
-
-                Aspects.Add(new List<string>(tmpAspects));
-                tmpAspects.Clear();
             }
-
-            objReader.Close();
 
             CalcAspectLinkList();
 
@@ -152,44 +159,41 @@ namespace Tccalc
         {
             Aspects.Clear();
             List<string> tmpAspects = new List<string>();
-            string tmpAsp = "";
-            StreamReader objReader = new StreamReader(filename);
-
-            while (tmpAsp != null && !objReader.EndOfStream)
+            using (var objReader = new StreamReader(filename))
             {
-                tmpAsp = objReader.ReadLine();
-                if (tmpAsp == null || tmpAsp.Equals(""))
-                    continue;
-                switch (tmpAsp.First())
+                foreach (var item in ReadLines(objReader))
                 {
-                    case '#':
-                    case '⑨':
+                    if (item.Equals(""))
                         continue;
-                    case '@':
-                        string command = tmpAsp.Substring(tmpAsp.IndexOf('@') + 1);
-                        command = command.ToLower();
-                        if (command.StartsWith("version"))
-                        {
-                            Version = command.Substring(command.IndexOf('=') + 1);
-                        }
-                        else if (command.StartsWith("change"))
-                        {
-                            int tmpChange;
-                            if (int.TryParse(command.Substring(command.IndexOf('=') + 1), out tmpChange))
+                    switch (item.First())
+                    {
+                        case '#':
+                        case '⑨':
+                            continue;
+                        case '@':
+                            string command = item.Substring(item.IndexOf('@') + 1);
+                            command = command.ToLower();
+                            if (command.StartsWith("version"))
                             {
-                                Change = tmpChange;
+                                Version = command.Substring(command.IndexOf('=') + 1);
                             }
-                        }
+                            else if (command.StartsWith("change"))
+                            {
+                                int tmpChange;
+                                if (int.TryParse(command.Substring(command.IndexOf('=') + 1), out tmpChange))
+                                {
+                                    Change = tmpChange;
+                                }
+                            }
 
-                        continue;
+                            continue;
+                    }
+                    tmpAspects.AddRange(item.Split(' '));
+
+                    Aspects.Add(new List<string>(tmpAspects));
+                    tmpAspects.Clear();
                 }
-                tmpAspects.AddRange(tmpAsp.Split(' '));
-
-                Aspects.Add(new List<string>(tmpAspects));
-                tmpAspects.Clear();
             }
-
-            objReader.Close();
 
             CalcAspectLinkList();
         }
@@ -307,18 +311,16 @@ namespace Tccalc
             }
             else if(depth > 0)
             {
-                for(int tmpasp = 1;tmpasp < Aspects[aspect].Count;++tmpasp)
+                for (int tmpasp = 1; tmpasp < Aspects[aspect].Count; ++tmpasp)
                 {
                     if (_exceptAspects.Contains(FindAspectFromStr(Aspects[aspect][tmpasp])))
-                    {
                         continue;
-                    }
 
                     TCalc(FindAspectFromStr(Aspects[aspect][tmpasp]), depth - 1, faspect);
                     _tmpCalcSWay.RemoveAt(_tmpCalcSWay.Count - 1);
                 }
             }
-            else if(depth < 0)
+            else
             {
                 MessageBox.Show(Resources.calcerror, Resources.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
