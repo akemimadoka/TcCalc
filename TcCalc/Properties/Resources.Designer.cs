@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Tccalc.Properties {
+namespace TcCalc.Properties {
     using System;
     
     
@@ -19,7 +19,7 @@ namespace Tccalc.Properties {
     // 类通过类似于 ResGen 或 Visual Studio 的工具自动生成的。
     // 若要添加或移除成员，请编辑 .ResX 文件，然后重新运行 ResGen
     // (以 /str 作为命令选项)，或重新生成 VS 项目。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -39,7 +39,7 @@ namespace Tccalc.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Tccalc.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TcCalc.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -47,7 +47,7 @@ namespace Tccalc.Properties {
         }
         
         /// <summary>
-        ///   使用此强类型资源类，为所有资源查找
+        ///   重写当前线程的 CurrentUICulture 属性
         ///   重写当前线程的 CurrentUICulture 属性。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -63,217 +63,235 @@ namespace Tccalc.Properties {
         /// <summary>
         ///   查找类似 元素描述文件版本： 的本地化字符串。
         /// </summary>
-        internal static string asver {
+        internal static string AspectDescriptionFileVersion {
             get {
-                return ResourceManager.GetString("asver", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 计算错误咯！【是不是步数写错了呢？】 的本地化字符串。
-        /// </summary>
-        internal static string calcerror {
-            get {
-                return ResourceManager.GetString("calcerror", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 貌似没有可以连接的方法呢，是否增大一步来尝试连接呢？ 的本地化字符串。
-        /// </summary>
-        internal static string cannotfindlink {
-            get {
-                return ResourceManager.GetString("cannotfindlink", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 没有找到连接方法 的本地化字符串。
-        /// </summary>
-        internal static string cannotfindlink_ {
-            get {
-                return ResourceManager.GetString("cannotfindlink_", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 选择的元素有错误，请确认开始及结束元素都选择了一个哦 的本地化字符串。
-        /// </summary>
-        internal static string checkas {
-            get {
-                return ResourceManager.GetString("checkas", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 ↑收起高级选项↑ 的本地化字符串。
-        /// </summary>
-        internal static string closead {
-            get {
-                return ResourceManager.GetString("closead", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 错误 的本地化字符串。
-        /// </summary>
-        internal static string error {
-            get {
-                return ResourceManager.GetString("error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 至少应当存在一个结果 的本地化字符串。
-        /// </summary>
-        internal static string noresult {
-            get {
-                return ResourceManager.GetString("noresult", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 无 的本地化字符串。
-        /// </summary>
-        internal static string nullas {
-            get {
-                return ResourceManager.GetString("nullas", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 ↓展开高级选项↓ 的本地化字符串。
-        /// </summary>
-        internal static string openad {
-            get {
-                return ResourceManager.GetString("openad", resourceCulture);
+                return ResourceManager.GetString("AspectDescriptionFileVersion", resourceCulture);
             }
         }
         
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap pic {
+        internal static System.Drawing.Bitmap Background {
             get {
-                object obj = ResourceManager.GetObject("pic", resourceCulture);
+                object obj = ResourceManager.GetObject("Background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 计算错误咯！【是不是步数写错了呢？】 的本地化字符串。
+        /// </summary>
+        internal static string CalculationError {
+            get {
+                return ResourceManager.GetString("CalculationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 貌似没有可以连接的方法呢，是否增大一步来尝试连接呢？ 的本地化字符串。
+        /// </summary>
+        internal static string CannotFindLink {
+            get {
+                return ResourceManager.GetString("CannotFindLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 没有找到连接方法 的本地化字符串。
+        /// </summary>
+        internal static string CannotFindLink_ {
+            get {
+                return ResourceManager.GetString("CannotFindLink_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 选择的元素有错误，请确认开始及结束元素都选择了一个哦 的本地化字符串。
+        /// </summary>
+        internal static string CheckAspect {
+            get {
+                return ResourceManager.GetString("CheckAspect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 ↑收起高级选项↑ 的本地化字符串。
+        /// </summary>
+        internal static string CloseAdvance {
+            get {
+                return ResourceManager.GetString("CloseAdvance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 错误 的本地化字符串。
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 于第 {0} 行遇到无效的元素描述 的本地化字符串。
+        /// </summary>
+        internal static string InvalidAspectDescription {
+            get {
+                return ResourceManager.GetString("InvalidAspectDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 无效的设置文件 的本地化字符串。
+        /// </summary>
+        internal static string InvalidSettingFile {
+            get {
+                return ResourceManager.GetString("InvalidSettingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 至少应当存在一个结果 的本地化字符串。
+        /// </summary>
+        internal static string NoResult {
+            get {
+                return ResourceManager.GetString("NoResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 无 的本地化字符串。
+        /// </summary>
+        internal static string NullAspect {
+            get {
+                return ResourceManager.GetString("NullAspect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 ↓展开高级选项↓ 的本地化字符串。
+        /// </summary>
+        internal static string OpenAdvance {
+            get {
+                return ResourceManager.GetString("OpenAdvance", resourceCulture);
             }
         }
         
         /// <summary>
         ///   查找类似 提示 的本地化字符串。
         /// </summary>
-        internal static string prompt {
+        internal static string Prompt {
             get {
-                return ResourceManager.GetString("prompt", resourceCulture);
+                return ResourceManager.GetString("Prompt", resourceCulture);
             }
         }
         
         /// <summary>
         ///   查找类似 共有 {0} 组结果，步数为 {1} 的本地化字符串。
         /// </summary>
-        internal static string resultwindowtitle {
+        internal static string ResultWindowTitle {
             get {
-                return ResourceManager.GetString("resultwindowtitle", resourceCulture);
+                return ResourceManager.GetString("ResultWindowTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   查找类似 已选择： 的本地化字符串。
         /// </summary>
-        internal static string selectedas {
+        internal static string SelectedAspect {
             get {
-                return ResourceManager.GetString("selectedas", resourceCulture);
+                return ResourceManager.GetString("SelectedAspect", resourceCulture);
             }
         }
         
         /// <summary>
         ///   查找类似 ↓已选择： 的本地化字符串。
         /// </summary>
-        internal static string selecteddown {
+        internal static string SelectedDown {
             get {
-                return ResourceManager.GetString("selecteddown", resourceCulture);
+                return ResourceManager.GetString("SelectedDown", resourceCulture);
             }
         }
         
         /// <summary>
         ///   查找类似 ↑已选择： 的本地化字符串。
         /// </summary>
-        internal static string selectedup {
+        internal static string SelectedUp {
             get {
-                return ResourceManager.GetString("selectedup", resourceCulture);
+                return ResourceManager.GetString("SelectedUp", resourceCulture);
             }
         }
         
         /// <summary>
         ///   查找类似 不能排除起始元素和结束元素哦，请确认一下排除元素列表 的本地化字符串。
         /// </summary>
-        internal static string startendasrequested {
+        internal static string StartEndAspectRequested {
             get {
-                return ResourceManager.GetString("startendasrequested", resourceCulture);
+                return ResourceManager.GetString("StartEndAspectRequested", resourceCulture);
             }
         }
         
         /// <summary>
         ///   查找类似 请输入步数哦 的本地化字符串。
         /// </summary>
-        internal static string steprequested {
+        internal static string StepRequested {
             get {
-                return ResourceManager.GetString("steprequested", resourceCulture);
+                return ResourceManager.GetString("StepRequested", resourceCulture);
             }
         }
         
         /// <summary>
         ///   查找类似 步数不是数字哦 的本地化字符串。
         /// </summary>
-        internal static string stepshouldbenumber {
+        internal static string StepShouldBeNumber {
             get {
-                return ResourceManager.GetString("stepshouldbenumber", resourceCulture);
+                return ResourceManager.GetString("StepShouldBeNumber", resourceCulture);
             }
         }
         
         /// <summary>
         ///   查找类似 步数太小了，请确保步数在0以上哦 的本地化字符串。
         /// </summary>
-        internal static string stepshouldbepositivenum {
+        internal static string StepShouldBePositiveNum {
             get {
-                return ResourceManager.GetString("stepshouldbepositivenum", resourceCulture);
+                return ResourceManager.GetString("StepShouldBePositiveNum", resourceCulture);
             }
         }
         
         /// <summary>
         ///   查找类似 步数太大了，神秘时代4没有步数9以上的连接哦，确定要继续计算吗？【时间可能会非常长】 的本地化字符串。
         /// </summary>
-        internal static string steptoobig {
+        internal static string StepTooBig {
             get {
-                return ResourceManager.GetString("steptoobig", resourceCulture);
+                return ResourceManager.GetString("StepTooBig", resourceCulture);
             }
         }
         
         /// <summary>
         ///   查找类似 成功 的本地化字符串。
         /// </summary>
-        internal static string success {
+        internal static string Success {
             get {
-                return ResourceManager.GetString("success", resourceCulture);
+                return ResourceManager.GetString("Success", resourceCulture);
             }
         }
         
         /// <summary>
         ///   查找类似 该版本的元素描述文件有更新了，需要下载吗？ 的本地化字符串。
         /// </summary>
-        internal static string updateavailable {
+        internal static string UpdateAvailable {
             get {
-                return ResourceManager.GetString("updateavailable", resourceCulture);
+                return ResourceManager.GetString("UpdateAvailable", resourceCulture);
             }
         }
         
         /// <summary>
         ///   查找类似 操作完成！ 的本地化字符串。
         /// </summary>
-        internal static string updatecompleted {
+        internal static string UpdateCompleted {
             get {
-                return ResourceManager.GetString("updatecompleted", resourceCulture);
+                return ResourceManager.GetString("UpdateCompleted", resourceCulture);
             }
         }
     }

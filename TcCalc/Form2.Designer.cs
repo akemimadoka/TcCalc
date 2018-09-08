@@ -1,6 +1,6 @@
-﻿namespace Tccalc
+﻿namespace TcCalc
 {
-    partial class Form2
+	sealed partial class Form2
     {
         /// <summary>
         /// Required designer variable.

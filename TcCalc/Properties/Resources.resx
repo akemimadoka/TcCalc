@@ -118,76 +118,82 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="pic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Background" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\pic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="updateavailable" xml:space="preserve">
+  <data name="UpdateAvailable" xml:space="preserve">
     <value>该版本的元素描述文件有更新了，需要下载吗？</value>
   </data>
-  <data name="prompt" xml:space="preserve">
+  <data name="Prompt" xml:space="preserve">
     <value>提示</value>
   </data>
-  <data name="updatecompleted" xml:space="preserve">
+  <data name="UpdateCompleted" xml:space="preserve">
     <value>操作完成！</value>
   </data>
-  <data name="success" xml:space="preserve">
+  <data name="Success" xml:space="preserve">
     <value>成功</value>
   </data>
-  <data name="asver" xml:space="preserve">
+  <data name="AspectDescriptionFileVersion" xml:space="preserve">
     <value>元素描述文件版本：</value>
   </data>
-  <data name="steprequested" xml:space="preserve">
+  <data name="StepRequested" xml:space="preserve">
     <value>请输入步数哦</value>
   </data>
-  <data name="checkas" xml:space="preserve">
+  <data name="CheckAspect" xml:space="preserve">
     <value>选择的元素有错误，请确认开始及结束元素都选择了一个哦</value>
   </data>
-  <data name="startendasrequested" xml:space="preserve">
+  <data name="StartEndAspectRequested" xml:space="preserve">
     <value>不能排除起始元素和结束元素哦，请确认一下排除元素列表</value>
   </data>
-  <data name="stepshouldbepositivenum" xml:space="preserve">
+  <data name="StepShouldBePositiveNum" xml:space="preserve">
     <value>步数太小了，请确保步数在0以上哦</value>
   </data>
-  <data name="steptoobig" xml:space="preserve">
+  <data name="StepTooBig" xml:space="preserve">
     <value>步数太大了，神秘时代4没有步数9以上的连接哦，确定要继续计算吗？【时间可能会非常长】</value>
   </data>
-  <data name="cannotfindlink" xml:space="preserve">
+  <data name="CannotFindLink" xml:space="preserve">
     <value>貌似没有可以连接的方法呢，是否增大一步来尝试连接呢？</value>
   </data>
-  <data name="cannotfindlink_" xml:space="preserve">
+  <data name="CannotFindLink_" xml:space="preserve">
     <value>没有找到连接方法</value>
   </data>
-  <data name="selectedup" xml:space="preserve">
+  <data name="SelectedUp" xml:space="preserve">
     <value>↑已选择：</value>
   </data>
-  <data name="nullas" xml:space="preserve">
+  <data name="NullAspect" xml:space="preserve">
     <value>无</value>
   </data>
-  <data name="selecteddown" xml:space="preserve">
+  <data name="SelectedDown" xml:space="preserve">
     <value>↓已选择：</value>
   </data>
-  <data name="closead" xml:space="preserve">
+  <data name="CloseAdvance" xml:space="preserve">
     <value>↑收起高级选项↑</value>
   </data>
-  <data name="openad" xml:space="preserve">
+  <data name="OpenAdvance" xml:space="preserve">
     <value>↓展开高级选项↓</value>
   </data>
-  <data name="selectedas" xml:space="preserve">
+  <data name="SelectedAspect" xml:space="preserve">
     <value>已选择：</value>
   </data>
-  <data name="calcerror" xml:space="preserve">
+  <data name="CalculationError" xml:space="preserve">
     <value>计算错误咯！【是不是步数写错了呢？】</value>
   </data>
-  <data name="error" xml:space="preserve">
+  <data name="Error" xml:space="preserve">
     <value>错误</value>
   </data>
-	<data name="noresult" xml:space="preserve">
+  <data name="NoResult" xml:space="preserve">
     <value>至少应当存在一个结果</value>
   </data>
-	<data name="resultwindowtitle" xml:space="preserve">
+  <data name="ResultWindowTitle" xml:space="preserve">
     <value>共有 {0} 组结果，步数为 {1}</value>
   </data>
-	<data name="stepshouldbenumber" xml:space="preserve">
+  <data name="StepShouldBeNumber" xml:space="preserve">
     <value>步数不是数字哦</value>
+  </data>
+  <data name="InvalidAspectDescription" xml:space="preserve">
+    <value>于第 {0} 行遇到无效的元素描述</value>
+  </data>
+  <data name="InvalidSettingFile" xml:space="preserve">
+    <value>无效的设置文件</value>
   </data>
 </root>

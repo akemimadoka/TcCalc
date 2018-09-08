@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.22310.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2019
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tccalc", "Tccalc\Tccalc.csproj", "{1E9420F1-ACD2-4127-BB6E-D79C1993AF48}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcCalc", "Tccalc\TcCalc.csproj", "{1E9420F1-ACD2-4127-BB6E-D79C1993AF48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F05446D7-2FC3-4F01-93A5-3C8D7F86B918}
 	EndGlobalSection
 EndGlobal

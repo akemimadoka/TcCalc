@@ -1,4 +1,4 @@
-﻿namespace Tccalc
+﻿namespace TcCalc
 {
     partial class frmAstip
     {
@@ -127,7 +127,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.BackgroundImage = global::Tccalc.Properties.Resources.pic;
+            this.BackgroundImage = global::TcCalc.Properties.Resources.Background;
             this.ClientSize = new System.Drawing.Size(280, 80);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);

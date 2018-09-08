@@ -37,5 +37,8 @@
 *.bat
 *.rar
 *.opendb
-/Tccalc/bin
-/Tccalc/obj
+bin
+obj
+_ReSharper.Caches
+packages
+.vs
